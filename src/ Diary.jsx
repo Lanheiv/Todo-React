@@ -7,5 +7,4 @@ function Diary ({title, body, date}) {
         </div>
     );
 }
-
 export default Diary;
