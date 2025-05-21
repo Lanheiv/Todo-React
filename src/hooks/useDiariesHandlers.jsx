@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useDiariesHandlers() {
   const [newtitle, setNewtitle] = useState("");
   const [newbody, setNewbody] = useState("");
-  const [Diaries, setDiaries] = useState([
-    { id:1, title:"Gulēšana", body:"Negulēšu visu nakti",  date:"12.02.2025" },
-    { id:2, title:"Ēšana", body:"Kā es gribu ēst.",  date:"24.10.2025" },
-    { id:3, title:"Programmēšana", body:"Es mīlu programmēt :>",  date:"12.02.2055" },
-  ]);
+  const [diaries, setDiaries] = useState(getLocalDiaries);
+
+  useEffect(() => {
+    localStorage.setItem("diaries", JSON.stringify(diaries));
+  }, [diaries]);
+  function getLocalDiaries() {
+    const stored = localStorage.getItem("diaries");
+    return stored ? JSON.parse(stored) : [];
+  }
 
   function handleDiarieAdd(event) {
     event.preventDefault();
@@ -29,7 +33,7 @@ export default function useDiariesHandlers() {
   }
 
   return {
-    Diaries,
+    diaries,
     newtitle,
     setNewtitle,
     newbody,

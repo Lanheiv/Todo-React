@@ -16,7 +16,7 @@ function App() {
     handleToggle
   } = useTodoHandlers();
   const {
-    Diaries,
+    diaries,
     newtitle,
     newbody,
     setNewtitle,
@@ -48,7 +48,7 @@ function App() {
           <button>Saglabāt</button>
         </form>
 
-        {Diaries.map ((diari) => { 
+        {diaries.map ((diari) => { 
           return <Diary key={diari.id} {...diari} onDelete={handleDiarieDelete} />;
         })}
       </div>
