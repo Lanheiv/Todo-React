@@ -13,13 +13,13 @@ export default function useTodoHandlers() {
   //   { id: 3, task: "Nopirkt pienu", completed: false },
   // ]);
 
-  useEffect(() => { // saglabā datus 
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
   function getLocalTodos() { // iegūs datus
     const stored = localStorage.getItem("todos");
     return stored ? JSON.parse(stored) : [];
   }
+  useEffect(() => { // saglabā datus, kad masīvs todos kutkas mainās
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   function handleAdd(event) { // pievienošanas funkcija
     event.preventDefault();

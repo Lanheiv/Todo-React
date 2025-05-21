@@ -5,14 +5,15 @@ export default function useDiariesHandlers() {
   const [newbody, setNewbody] = useState("");
   const [diaries, setDiaries] = useState(getLocalDiaries);
 
-  useEffect(() => {
-    localStorage.setItem("diaries", JSON.stringify(diaries));
-  }, [diaries]);
+
   function getLocalDiaries() {
     const stored = localStorage.getItem("diaries");
     return stored ? JSON.parse(stored) : [];
   }
-
+  useEffect(() => {
+    localStorage.setItem("diaries", JSON.stringify(diaries));
+  }, [diaries]);
+  
   function handleDiarieAdd(event) {
     event.preventDefault();
 
